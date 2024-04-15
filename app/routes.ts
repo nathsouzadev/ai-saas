@@ -25,6 +25,13 @@ export const tools: IRoutes[] = [
     bgColor: "bg-violet-500/10",
   },
   {
+    label: "Music",
+    icon: MusicIcon,
+    href: "/music",
+    color: "text-emerald-700",
+    bgColor: "bg-emerald-700/10",
+  },
+  {
     label: "Image",
     icon: ImageIcon,
     href: "/image",
@@ -37,13 +44,6 @@ export const tools: IRoutes[] = [
     href: "/video",
     color: "text-orange-700",
     bgColor: "bg-orange-700/10",
-  },
-  {
-    label: "Music",
-    icon: MusicIcon,
-    href: "/music",
-    color: "text-emerald-700",
-    bgColor: "bg-emerald-700/10",
   },
   {
     label: "Code",
