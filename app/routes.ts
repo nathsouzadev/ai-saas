@@ -13,38 +13,44 @@ interface IRoutes {
   icon: LucideIcon;
   href: string;
   color?: string;
+  bgColor?: string;
 }
 
 export const tools: IRoutes[] = [
   {
     label: "Conversation",
     icon: MessageSquare,
-    color: "violet-500",
+    color: "text-violet-500",
     href: "/conversation",
+    bgColor: "bg-violet-500/10",
   },
   {
     label: "Image",
     icon: ImageIcon,
     href: "/image",
-    color: "pink-700",
+    color: "text-pink-700",
+    bgColor: "bg-pink-700/10",
   },
   {
     label: "Video",
     icon: VideoIcon,
     href: "/video",
-    color: "orange-700",
+    color: "text-orange-700",
+    bgColor: "bg-orange-700/10",
   },
   {
     label: "Music",
     icon: MusicIcon,
     href: "/music",
-    color: "emerald-700",
+    color: "text-emerald-700",
+    bgColor: "bg-emerald-700/10",
   },
   {
     label: "Code",
     icon: Code,
     href: "/code",
-    color: "green-700",
+    color: "text-green-700",
+    bgColor: "bg-green-700/10",
   },
 ];
 
