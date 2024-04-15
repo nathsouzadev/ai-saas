@@ -1,61 +1,18 @@
 "use client";
 
+import { routes } from "@/app/routes";
 import { cn } from "@/lib/utils";
-import { Code, ImageIcon, LayoutDashboard, MessageSquare, MusicIcon, Settings, VideoIcon } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import path from "path";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
-const routes = [
-  {
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    href: "/dashboard",
-    color: "text-sky-500",
-  },
-  {
-    label: "Conversation",
-    icon: MessageSquare,
-    href: "/conversation",
-    color: "text-violet-500",
-  },
-  {
-    label: "Image",
-    icon: ImageIcon,
-    href: "/image",
-    color: "text-pink-700",
-  },
-  {
-    label: "Video",
-    icon: VideoIcon,
-    href: "/video",
-    color: "text-orange-700",
-  },
-  {
-    label: "Music",
-    icon: MusicIcon,
-    href: "/music",
-    color: "text-emerald-700",
-  },
-  {
-    label: "Code",
-    icon: Code,
-    href: "/code",
-    color: "text-green-700",
-  },
-  {
-    label: "Settings",
-    icon: Settings,
-    href: "/settings"
-  }
-];
-
 const Sidebar = () => {
   const pathName = usePathname();
+
+  console.log(routes)
 
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
