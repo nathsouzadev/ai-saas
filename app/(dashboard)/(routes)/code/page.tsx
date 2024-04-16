@@ -2,7 +2,6 @@
 
 import * as z from 'zod';
 import Heading from '@/components/heading';
-import { MessageSquare } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { formSchema } from './constants';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,6 +15,8 @@ import { Loader } from '@/components/loader';
 import { cn } from '@/lib/utils';
 import { BotAvatar } from '@/components/bot-avatar';
 import { UserAvatar } from '@/components/user-avatar';
+import { codeDetails } from '@/app/routes';
+import ReactMarkdown from 'react-markdown';
 
 const CodePage = () => {
   const router = useRouter();
@@ -36,9 +37,7 @@ const CodePage = () => {
         content: values.prompt,
       };
 
-      const newMessages = [...messages, userMessage];
-
-      const response = await fetch('/api/conversation', {
+      const response = await fetch('/api/code', {
         body: JSON.stringify({ message: values.prompt }),
         method: 'POST',
       });
@@ -61,11 +60,11 @@ const CodePage = () => {
   return (
     <div>
       <Heading
-        title='Conversation'
-        description='Our conversation model'
-        icon={MessageSquare}
-        iconColor='text-violet-500'
-        bgColor='bg-violet-500/10'
+        title={codeDetails.label}
+        description={codeDetails.description}
+        icon={codeDetails.icon}
+        iconColor={codeDetails.color}
+        bgColor={codeDetails.bgColor}
       />
       <div className='px-4 lg:px-8'>
         <div>
@@ -82,7 +81,7 @@ const CodePage = () => {
                       <Input
                         className='border-0 outline-0 focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder='How calculate the radius of circle?'
+                        placeholder='Simple toogle button using react hooks'
                         {...field}
                       />
                     </FormControl>
@@ -120,7 +119,21 @@ const CodePage = () => {
                   )}
                 >
                   {message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
-                  <p className='text-sm'>{message.content}</p>
+                  <ReactMarkdown
+                    components={{
+                      pre: ({ node, ...props }) => (
+                        <div className='overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg'>
+                          <pre {...props}/>
+                        </div>
+                      ),
+                      code: ({ node, ...props }) => (
+                        <code className='bg-black/10 rounded-lg p-1' {...props}/>
+                      )
+                    }}
+                    className='text-sm overflow-hidden leading-7'
+                  >
+                    {message.content}
+                  </ReactMarkdown>
                 </div>
               );
             })}

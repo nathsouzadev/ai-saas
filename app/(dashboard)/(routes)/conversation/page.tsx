@@ -2,7 +2,6 @@
 
 import * as z from 'zod';
 import Heading from '@/components/heading';
-import { MessageSquare } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { formSchema } from './constants';
 import { zodResolver } from '@hookform/resolvers/zod';

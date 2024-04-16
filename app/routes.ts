@@ -67,7 +67,7 @@ export const codeDetails: ITools = {
   href: '/code',
   color: 'text-green-700',
   bgColor: 'bg-green-700/10',
-  description: 'Code model',
+  description: 'Generate code using descriptive text',
 }
 
 export const tools: IRoutes[] = [
