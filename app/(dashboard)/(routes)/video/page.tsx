@@ -12,12 +12,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
-import { musicDetails } from '@/app/routes';
-import { VolumeX } from 'lucide-react';
+import { videoDetails } from '@/app/routes';
+import { VideoOff } from 'lucide-react';
 
-const MusicPage = () => {
+const VideoPage = () => {
   const router = useRouter();
-  const [music, setMusic] = useState<string>();
+  const [video, setVideo] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -28,15 +28,15 @@ const MusicPage = () => {
 
   const isLoading = form.formState.isSubmitting;
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setMusic(undefined);
+    setVideo(undefined);
     try {
-      const response = await fetch('/api/music', {
+      const response = await fetch('/api/video', {
         body: JSON.stringify(values),
         method: 'POST',
       });
 
       const data = await response.json();
-      setMusic(data.audio);
+      setVideo(data[0]);
 
       form.reset();
     } catch (error) {
@@ -49,11 +49,11 @@ const MusicPage = () => {
   return (
     <div>
       <Heading
-        title={musicDetails.label}
-        description={musicDetails.description}
-        icon={musicDetails.icon}
-        iconColor={musicDetails.color}
-        bgColor={musicDetails.bgColor}
+        title={videoDetails.label}
+        description={videoDetails.description}
+        icon={videoDetails.icon}
+        iconColor={videoDetails.color}
+        bgColor={videoDetails.bgColor}
       />
       <div className='px-4 lg:px-8'>
         <div>
@@ -70,7 +70,7 @@ const MusicPage = () => {
                       <Input
                         className='border-0 outline-0 focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder='Piano solo'
+                        placeholder='Clown fish swimming in the ocean...'
                         {...field}
                       />
                     </FormControl>
@@ -92,13 +92,13 @@ const MusicPage = () => {
               <Loader />
             </div>
           )}
-          {!music && !isLoading && (
-            <Empty icon={VolumeX} label='No music generated' />
+          {!video && !isLoading && (
+            <Empty icon={VideoOff} label='No video generated' />
           )}
-          {music && (
-            <audio controls className='w-full mt-8'>
-              <source src={music} />
-            </audio>
+          {video && (
+            <video controls className='w-full mt-8 aspect-video mt-8 rounded-lg border bg-black'>
+              <source src={video} />
+            </video>
           )}
         </div>
       </div>
@@ -106,4 +106,4 @@ const MusicPage = () => {
   );
 };
 
-export default MusicPage;
+export default VideoPage;

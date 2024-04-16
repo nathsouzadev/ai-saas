@@ -9,8 +9,6 @@ export const Empty = ({ label, icon: Icon }: EmptyProps) => {
   return (
     <div className='h-full -[20 flex flex-col items-center justify-center'>
       <Icon className='relative m-5 text-gray-500' size={148} />
-      {/* < className='relative m-5 text-gray-500' size={148}/>
-      <VideoOff className='relative m-5 text-gray-500' size={148}/> */}
       <p className='text-muted-foreground text-sm text-center'>{label}</p>
     </div>
   );

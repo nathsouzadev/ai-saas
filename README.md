@@ -21,6 +21,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Provide input to application and have a natural conversation with AI
 
+### [Music](http://localhost:3000/music)
+
+- Provide a short input and receive music results from AI
+
+### [Image](http://localhost:3000/image)
+
+- Provide input and receive image results from AI
+
+### [Video](http://localhost:3000/video)
+
+- Provide input and receive video results from AI
+
 ### [Code](http://localhost:3000/code)
 
 - Provide technical input and receive code results from AI
