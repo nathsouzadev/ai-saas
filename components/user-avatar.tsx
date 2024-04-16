@@ -1,5 +1,5 @@
-import { useUser } from "@clerk/nextjs";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useUser } from '@clerk/nextjs';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export const UserAvatar = () => {
   const { user } = useUser();
@@ -7,8 +7,8 @@ export const UserAvatar = () => {
     <Avatar>
       <AvatarImage src={user?.imageUrl} />
       <AvatarFallback>
-        {user?.firstName?.charAt(0) || ""}
-        {user?.lastName?.charAt(0) || ""}
+        {user?.firstName?.charAt(0) || ''}
+        {user?.lastName?.charAt(0) || ''}
       </AvatarFallback>
     </Avatar>
   );

@@ -1,10 +1,10 @@
-import { Brain, LoaderCircle } from "lucide-react";
+import { Brain, LoaderCircle } from 'lucide-react';
 
 export const Loader = () => {
   return (
-    <div className="h-full flex flex-col gap-y-4 items-center justify-center">
-        <Brain className="fill-pink-300 relative animate-pulse" size={64}/>
-      <p className="text-sm text-muted-foreground">
+    <div className='h-full flex flex-col gap-y-4 items-center justify-center'>
+        <Brain className='fill-pink-300 relative animate-pulse' size={64}/>
+      <p className='text-sm text-muted-foreground'>
         Genius is thinking...
       </p>
     </div>

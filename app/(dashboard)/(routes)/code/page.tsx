@@ -16,9 +16,8 @@ import { Loader } from '@/components/loader';
 import { cn } from '@/lib/utils';
 import { BotAvatar } from '@/components/bot-avatar';
 import { UserAvatar } from '@/components/user-avatar';
-import { conversationDetails } from '@/app/routes';
 
-const ConversationPage = () => {
+const CodePage = () => {
   const router = useRouter();
   const [messages, setMessages] = useState<any[]>([]);
 
@@ -36,6 +35,8 @@ const ConversationPage = () => {
         role: 'user',
         content: values.prompt,
       };
+
+      const newMessages = [...messages, userMessage];
 
       const response = await fetch('/api/conversation', {
         body: JSON.stringify({ message: values.prompt }),
@@ -60,11 +61,11 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title={conversationDetails.label}
-        description={conversationDetails.description}
-        icon={conversationDetails.icon}
-        iconColor={conversationDetails.color}
-        bgColor={conversationDetails.bgColor}
+        title='Conversation'
+        description='Our conversation model'
+        icon={MessageSquare}
+        iconColor='text-violet-500'
+        bgColor='bg-violet-500/10'
       />
       <div className='px-4 lg:px-8'>
         <div>
@@ -130,4 +131,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default CodePage;
