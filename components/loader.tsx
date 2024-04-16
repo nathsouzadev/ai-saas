@@ -1,4 +1,4 @@
-import { Brain, LoaderCircle } from 'lucide-react';
+import { Brain } from 'lucide-react';
 
 export const Loader = () => {
   return (

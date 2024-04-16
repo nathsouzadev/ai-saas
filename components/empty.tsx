@@ -1,4 +1,4 @@
-import { Code, ImageOff, LucideIcon, MessageSquareOff, VideoOff, VolumeX } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
 interface EmptyProps {
   icon: LucideIcon;
