@@ -44,16 +44,16 @@ export const musicDetails: ITools = {
 }
 
 export const imageDetails: ITools = {
-  label: 'Image',
+  label: 'Image generator',
   icon: ImageIcon,
   href: '/image',
   color: 'text-pink-700',
   bgColor: 'bg-pink-700/10',
-  description: 'Image model',
+  description: 'Turn your prompt in an image',
 }
 
 export const videoDetails: ITools = {
-  label: 'Video',
+  label: 'Video generator',
   icon: VideoIcon,
   href: '/video',
   color: 'text-orange-700',
@@ -62,7 +62,7 @@ export const videoDetails: ITools = {
 }
 
 export const codeDetails: ITools = {
-  label: 'Code',
+  label: 'Code generator',
   icon: Code,
   href: '/code',
   color: 'text-green-700',
