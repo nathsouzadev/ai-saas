@@ -17,6 +17,7 @@ import { BotAvatar } from '@/components/bot-avatar';
 import { UserAvatar } from '@/components/user-avatar';
 import { codeDetails } from '@/app/routes';
 import ReactMarkdown from 'react-markdown';
+import { Code } from 'lucide-react';
 
 const CodePage = () => {
   const router = useRouter();
@@ -104,7 +105,7 @@ const CodePage = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty label='No conversation started' />
+            <Empty icon={Code} label='No code generated' />
           )}
           <div className='flex flex-col-reverse gap-y-4'>
             {messages.map((message, id) => {

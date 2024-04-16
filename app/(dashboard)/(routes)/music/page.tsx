@@ -12,15 +12,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
-import { cn } from '@/lib/utils';
-import { BotAvatar } from '@/components/bot-avatar';
-import { UserAvatar } from '@/components/user-avatar';
-import { conversationDetails } from '@/app/routes';
-import { MessageSquareOff } from 'lucide-react';
+import { musicDetails } from '@/app/routes';
+import { VolumeX } from 'lucide-react';
 
-const ConversationPage = () => {
+const MusicPage = () => {
   const router = useRouter();
-  const [messages, setMessages] = useState<any[]>([]);
+  const [music, setMusic] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,24 +28,21 @@ const ConversationPage = () => {
 
   const isLoading = form.formState.isSubmitting;
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setMusic(undefined);
     try {
       const userMessage = {
         role: 'user',
         content: values.prompt,
       };
 
-      const response = await fetch('/api/conversation', {
-        body: JSON.stringify({ message: values.prompt }),
+      const response = await fetch('/api/music', {
+        body: JSON.stringify(values),
         method: 'POST',
       });
 
       const data = await response.json();
+      setMusic(data.audio);
 
-      setMessages((current) => [
-        ...current,
-        userMessage,
-        { role: 'model', content: data },
-      ]);
       form.reset();
     } catch (error) {
       console.log(error);
@@ -60,11 +54,11 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title={conversationDetails.label}
-        description={conversationDetails.description}
-        icon={conversationDetails.icon}
-        iconColor={conversationDetails.color}
-        bgColor={conversationDetails.bgColor}
+        title={musicDetails.label}
+        description={musicDetails.description}
+        icon={musicDetails.icon}
+        iconColor={musicDetails.color}
+        bgColor={musicDetails.bgColor}
       />
       <div className='px-4 lg:px-8'>
         <div>
@@ -81,7 +75,7 @@ const ConversationPage = () => {
                       <Input
                         className='border-0 outline-0 focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder='How calculate the radius of circle?'
+                        placeholder='Piano solo'
                         {...field}
                       />
                     </FormControl>
@@ -103,31 +97,18 @@ const ConversationPage = () => {
               <Loader />
             </div>
           )}
-          {messages.length === 0 && !isLoading && (
-            <Empty icon={MessageSquareOff} label='No conversation started' />
+          {!music && !isLoading && (
+            <Empty icon={VolumeX} label='No music generated' />
           )}
-          <div className='flex flex-col-reverse gap-y-4'>
-            {messages.map((message, id) => {
-              return (
-                <div
-                  key={id}
-                  className={cn(
-                    'p-8 w-full flex items-start gap-x-8 rounded-lg',
-                    message.role === 'user'
-                      ? 'bg-white border border-black/10'
-                      : 'bg-muted'
-                  )}
-                >
-                  {message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
-                  <p className='text-sm'>{message.content}</p>
-                </div>
-              );
-            })}
-          </div>
+          {music && (
+            <audio controls className='w-full mt-8'>
+              <source src={music} />
+            </audio>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default ConversationPage;
+export default MusicPage;

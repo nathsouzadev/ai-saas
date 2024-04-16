@@ -10,8 +10,8 @@ export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { prompt, amount = 1, resolution = '512x512' } = body.values;
-    
+    const { prompt } = body;
+
     if (!userId) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
@@ -22,32 +22,22 @@ export async function POST(req: Request) {
       });
     }
 
-    if (!prompt || !amount || !resolution) {
-      return new NextResponse('All fields are required', { status: 400 });
+    if (!prompt) {
+      return new NextResponse('Prompt is required', { status: 400 });
     }
 
-    const resolutionNumbers = resolution.split('x').map(Number);
-    const [width, height] = resolutionNumbers;
-
     const result = await replicate.run(
-      'bytedance/sdxl-lightning-4step:727e49a643e999d602a896c774a0658ffefea21465756a6ce24b7ea4165eba6a',
+      'riffusion/riffusion:8cf61ea6c56afd61d8f5b9ffd14d7c216c0a93844ce2d82ac1c9ecc9c7f24e05',
       {
         input: {
-          width,
-          height,
-          prompt,
-          scheduler: 'K_EULER',
-          num_outputs: Number(amount),
-          guidance_scale: 0,
-          negative_prompt: 'worst quality, low quality',
-          num_inference_steps: 4,
+          prompt_a: prompt
         },
       }
     );
 
     return NextResponse.json(result);
   } catch (error) {
-    console.log('[IMAGE_ERROR]', error);
+    console.log('[MUSIC_ERROR]', error);
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }

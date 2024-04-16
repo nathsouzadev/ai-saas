@@ -16,7 +16,7 @@ import { imageDetails } from '@/app/routes';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardFooter } from '@/components/ui/card';
 import Image from 'next/image';
-import { Download } from 'lucide-react';
+import { Download, ImageOff } from 'lucide-react';
 
 const ImagePage = () => {
   const router = useRouter();
@@ -159,7 +159,7 @@ const ImagePage = () => {
             </div>
           )}
           {images.length === 0 && !isLoading && (
-            <Empty label='No images generated' />
+            <Empty icon={ImageOff} label='No images generated' />
           )}
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8'>
             {images.map(src => (
