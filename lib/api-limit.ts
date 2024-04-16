@@ -38,3 +38,17 @@ export const checkApiLimit = async () => {
 
   return !userApiLimit || userApiLimit.count < MAX_FREE_COUNT ? true : false;
 };
+
+export const getApiLimit = async () => {
+  const { userId } = auth();
+
+  if (!userId) return 0;
+
+  const userApiLimit = await prismadb.userApiLimit.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  return !userApiLimit ? 0 : userApiLimit.count;
+}
