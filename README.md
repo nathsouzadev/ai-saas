@@ -6,19 +6,24 @@ Interface project to integrate with AI and payment tools
 
 ## Getting Started
 
-First, run the development server:
+Provide .env values, then run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Available resources
+
+### [Conversation](http://localhost:3000/conversation)
+
+- Provide input to application and have a natural conversation with AI
+
+### [Code](http://localhost:3000/code)
+
+- Provide technical input and receive code results from AI
 
 ## Stay in touch
 
