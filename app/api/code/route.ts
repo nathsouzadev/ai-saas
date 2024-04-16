@@ -1,3 +1,4 @@
+import { checkApiLimit, increaseApiLimit } from '@/lib/api-limit';
 import { auth } from '@clerk/nextjs';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
@@ -23,6 +24,14 @@ export async function POST(req: Request) {
     if (!message) {
       return new NextResponse('Message is required', { status: 400 });
     }
+
+    const freeTrial = await checkApiLimit();
+
+    if (!freeTrial) {
+      return new NextResponse('Free trial has expired', { status: 403 });
+    }
+
+    await increaseApiLimit();
 
     const model = genAI.getGenerativeModel({ 
       model: 'gemini-pro'

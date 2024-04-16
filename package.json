@@ -8,12 +8,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "test": "jest"
+    "test": "jest",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "npx prisma migrate deploy",
+    "prisma:pull": "npx prisma db pull"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
     "@google/generative-ai": "^0.7.0",
     "@hookform/resolvers": "^3.3.4",
+    "@prisma/client": "^5.12.1",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
@@ -45,6 +50,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
+    "prisma": "^5.12.1",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5"

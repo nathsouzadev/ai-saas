@@ -6,7 +6,15 @@ Interface project to integrate with AI and payment tools
 
 ## Getting Started
 
-Provide .env values, then run the development server:
+Provide .env values
+
+Install and run [Docker Desktop](https://www.docker.com/)
+
+```bash
+docker-compose up -d
+```
+
+Run the development server:
 
 ```bash
 npm install
