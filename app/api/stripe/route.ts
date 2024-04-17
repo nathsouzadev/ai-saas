@@ -21,6 +21,8 @@ export async function GET() {
       },
     });
 
+    console.log(userSubscription)
+
     if (userSubscription && userSubscription.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: userSubscription.stripeCustomerId,
