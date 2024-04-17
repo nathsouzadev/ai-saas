@@ -18,8 +18,10 @@ import { UserAvatar } from '@/components/user-avatar';
 import { codeDetails } from '@/app/routes';
 import ReactMarkdown from 'react-markdown';
 import { Code } from 'lucide-react';
+import { useProModal } from '@/hooks/use-pro-model';
 
 const CodePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<any[]>([]);
 
@@ -43,6 +45,10 @@ const CodePage = () => {
         method: 'POST',
       });
 
+      if(response.status === 403) {
+        proModal.onOpen();
+      }
+
       const data = await response.json();
 
       setMessages((current) => [
@@ -51,8 +57,8 @@ const CodePage = () => {
         { role: 'model', content: data },
       ]);
       form.reset();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error)
     } finally {
       router.refresh();
     }

@@ -14,8 +14,10 @@ import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
 import { musicDetails } from '@/app/routes';
 import { VolumeX } from 'lucide-react';
+import { useProModal } from '@/hooks/use-pro-model';
 
 const MusicPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [music, setMusic] = useState<string>();
 
@@ -35,12 +37,16 @@ const MusicPage = () => {
         method: 'POST',
       });
 
+      if(response.status === 403) {
+        proModal.onOpen();
+      }
+
       const data = await response.json();
       setMusic(data.audio);
 
       form.reset();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error)
     } finally {
       router.refresh();
     }

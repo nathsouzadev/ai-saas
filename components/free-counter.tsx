@@ -5,12 +5,14 @@ import { MAX_FREE_COUNT } from '@/constants';
 import { Progress } from './ui/progress';
 import { Button } from './ui/button';
 import { Zap } from 'lucide-react';
+import { useProModal } from '@/hooks/use-pro-model';
 
 interface FreeCounterProps {
   apiLimitCount: number;
 }
 
 export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
+  const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,7 +34,11 @@ export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
               value={(apiLimitCount / MAX_FREE_COUNT) * 100}
             />
           </div>
-          <Button className='w-full' variant='premium'>
+          <Button 
+            className='w-full' 
+            variant='premium'
+            onClick={proModal.onOpen}
+          >
             Upgrade
             <Zap className='2-4 h-4 ml-2 fill-white'/>
           </Button>

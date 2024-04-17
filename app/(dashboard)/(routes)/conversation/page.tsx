@@ -17,8 +17,10 @@ import { BotAvatar } from '@/components/bot-avatar';
 import { UserAvatar } from '@/components/user-avatar';
 import { conversationDetails } from '@/app/routes';
 import { MessageSquareOff } from 'lucide-react';
+import { useProModal } from '@/hooks/use-pro-model';
 
 const ConversationPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<any[]>([]);
 
@@ -42,6 +44,10 @@ const ConversationPage = () => {
         method: 'POST',
       });
 
+      if(response.status === 403) {
+        proModal.onOpen();
+      }
+
       const data = await response.json();
 
       setMessages((current) => [
@@ -50,8 +56,8 @@ const ConversationPage = () => {
         { role: 'model', content: data },
       ]);
       form.reset();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error)
     } finally {
       router.refresh();
     }

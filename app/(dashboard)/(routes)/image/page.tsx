@@ -17,8 +17,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardFooter } from '@/components/ui/card';
 import Image from 'next/image';
 import { Download, ImageOff } from 'lucide-react';
+import { useProModal } from '@/hooks/use-pro-model';
 
 const ImagePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -41,12 +43,16 @@ const ImagePage = () => {
         method: 'POST',
       });
 
+      if(response.status === 403) {
+        proModal.onOpen();
+      }
+
       const data = await response.json();
       setImages(data)
 
       form.reset();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error)
     } finally {
       router.refresh();
     }
