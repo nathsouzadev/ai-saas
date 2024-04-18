@@ -15,6 +15,7 @@ import { Loader } from '@/components/loader';
 import { videoDetails } from '@/app/routes';
 import { VideoOff } from 'lucide-react';
 import { useProModal } from '@/hooks/use-pro-model';
+import toast from 'react-hot-toast';
 
 const VideoPage = () => {
   const proModal = useProModal();
@@ -47,6 +48,7 @@ const VideoPage = () => {
       form.reset();
     } catch (error: any) {
       console.log(error)
+      toast.error('Failed to generate response');
     } finally {
       router.refresh();
     }

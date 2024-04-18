@@ -15,6 +15,7 @@ import { Loader } from '@/components/loader';
 import { musicDetails } from '@/app/routes';
 import { VolumeX } from 'lucide-react';
 import { useProModal } from '@/hooks/use-pro-model';
+import toast from 'react-hot-toast';
 
 const MusicPage = () => {
   const proModal = useProModal();
@@ -47,6 +48,7 @@ const MusicPage = () => {
       form.reset();
     } catch (error: any) {
       console.log(error)
+      toast.error('Failed to generate response');
     } finally {
       router.refresh();
     }

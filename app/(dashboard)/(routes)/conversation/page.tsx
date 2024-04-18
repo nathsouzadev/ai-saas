@@ -18,6 +18,7 @@ import { UserAvatar } from '@/components/user-avatar';
 import { conversationDetails } from '@/app/routes';
 import { MessageSquareOff } from 'lucide-react';
 import { useProModal } from '@/hooks/use-pro-model';
+import toast from 'react-hot-toast';
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -58,6 +59,7 @@ const ConversationPage = () => {
       form.reset();
     } catch (error: any) {
       console.log(error)
+      toast.error('Failed to generate response');
     } finally {
       router.refresh();
     }

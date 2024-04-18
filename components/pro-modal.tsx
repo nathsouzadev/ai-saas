@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { Check, Zap } from 'lucide-react';
 import { Button } from './ui/button';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export const ProModal = () => {
   const proModal = useProModal();
@@ -25,6 +26,7 @@ export const ProModal = () => {
       window.location.href = result.url;
     } catch (error) {
       console.log(error, 'STRIPE_CLIENT_ERROR')
+      toast.error('Failed to subscribe to pro plan');
     } finally {
       setLoading(false)
     }

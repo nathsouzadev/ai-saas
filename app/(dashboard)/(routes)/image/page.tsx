@@ -18,6 +18,7 @@ import { Card, CardFooter } from '@/components/ui/card';
 import Image from 'next/image';
 import { Download, ImageOff } from 'lucide-react';
 import { useProModal } from '@/hooks/use-pro-model';
+import toast from 'react-hot-toast';
 
 const ImagePage = () => {
   const proModal = useProModal();
@@ -53,6 +54,7 @@ const ImagePage = () => {
       form.reset();
     } catch (error: any) {
       console.log(error)
+      toast.error('Failed to generate response');
     } finally {
       router.refresh();
     }
