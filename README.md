@@ -8,13 +8,29 @@ Interface project to integrate with AI and payment tools
 
 Provide .env values
 
-Install and run [Docker Desktop](https://www.docker.com/)
+1 - Create a [Clerk](https://clerk.com/) account
+
+2 - Create a [Stripe](https://stripe.com/) account and login
+
+```bash
+stripe login
+```
+
+3 - Get a stripe secret key and keep terminal running
+
+```bash
+stripe listen --forward-to localhost:3000/api/webhook
+```
+
+4 - Provide the key to use [Gemini](https://ai.google.dev/) and [Replicate](https://replicate.com/) apis
+
+5 - Install and run [Docker Desktop](https://www.docker.com/)
 
 ```bash
 docker-compose up -d
 ```
 
-Run the development server:
+6 - Run the development server:
 
 ```bash
 npm install
