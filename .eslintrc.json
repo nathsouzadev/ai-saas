@@ -16,7 +16,9 @@
     ".eslintrc.js",
     "**/*.css",
     "jest.config.js",
-    "cypress.config.ts"
+    "cypress.config.ts",
+    "**/prismadb.ts",
+    "**/subscription.ts"
   ],
   "rules": {
     "@typescript-eslint/interface-name-prefix": "off",
